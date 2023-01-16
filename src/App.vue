@@ -2,7 +2,11 @@
   <div id="app">
     <TheHeader />
     <main id='main'>
-      <router-view/>
+      <router-view v-slot='{ Component }'>
+        <transition name='fade'>
+          <component :is='Component' />
+        </transition>
+      </router-view>
     </main>
     <TheFooter />
   </div>
@@ -67,6 +71,9 @@ img {
 #main {
   flex: 1;
 }
+label {
+  margin-bottom: 5px;
+}
 input, textarea {
   border-radius: 4px;
   border: 1px solid #fff;
@@ -81,5 +88,14 @@ input:hover, input:focus, textarea:hover, textarea:focus {
   outline: none;
   box-shadow: 0 6px 12px rgba(30, 60, 90. 0.2);
   border-color: #97f;
+}
+.fade-enter-from{
+opacity: 0;
+}
+.fade-enter-to {
+  opacity: 1
+}
+.fade-enter-active{
+  transition: all .3s ease;
 }
 </style>

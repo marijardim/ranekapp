@@ -2,9 +2,9 @@
   <section class='products-container'>
     <div v-if='products && products.length' class='products'>
       <div v-for='(product, index) in products' :key='index' class='product'>
-        <router-link to='/'>
+        <router-link :to='{name:"produto", params: { id: product.id }}'>
           <img v-if='product.pics' :src='product.pics[0].src' :alt='product.pics[0].title'>
-          <p class='price'>{{ product.price }}</p>
+          <p class='price'>R${{ product.price }}</p>
           <h2 class='title'>{{ product.name }}</h2>
           <p class='description'>{{ product.description }}</p>
         </router-link>
@@ -41,6 +41,9 @@ export default {
     url () {
       const query = serialize(this.$route.query)
       return `/product?_limit=${this.productsPerPage}${query}`
+    },
+    filterValue (value) {
+      return `R$${value},00`
     }
   },
   watch: {
