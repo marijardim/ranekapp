@@ -29,11 +29,17 @@ export default createStore({
   },
   actions: {
     getUser (context, payload) {
-      api.get(`/user/${payload}`)
+      return api.get(`/user/${payload}`)
         .then(response => {
           context.commit('UPDATE_USER', response.data)
           context.commit('UPDATE_LOGIN', true)
         })
+    },
+    createUser (context, payload) {
+      context.commit('UPDATE_USER', {
+        id: payload.email
+      })
+      return api.post('/user', payload)
     }
   },
   modules: {

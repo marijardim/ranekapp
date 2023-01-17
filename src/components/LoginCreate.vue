@@ -4,7 +4,7 @@
     <transition>
       <button v-if='!create' @click='create = true' class='btn'>Criar Conta</button>
       <userForm v-else >
-        <button class="btn btn-form">Criar usuário</button>
+        <button class="btn btn-form" @click.prevent='createUser'>Criar usuário</button>
       </userForm>
     </transition>
   </section>
@@ -18,6 +18,17 @@ export default {
   data () {
     return {
       create: false
+    }
+  },
+  methods: {
+    async createUser () {
+      try {
+        await this.$store.dispatch('createUser', this.$store.state.user)
+        await this.$store.dispatch('getUser', this.$store.state.user.email)
+        this.$router.push('/')
+      } catch (erro) {
+        console.log(erro)
+      }
     }
   }
 }
