@@ -1,7 +1,7 @@
 <template>
   <section>
     <h2>Crie a sua conta</h2>
-    <transition>
+    <transition name='fade'>
       <button v-if='!create' @click='create = true' class='btn'>Criar Conta</button>
       <userForm v-else >
         <button class="btn btn-form" @click.prevent='createUser'>Criar usuário</button>
