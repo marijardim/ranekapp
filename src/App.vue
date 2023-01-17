@@ -30,7 +30,7 @@ body, ul, li, h1, h2, p {
   padding: 0px;
 }
 ul {
-  list-style: none
+  list-style: none;
 }
 body{
   font-family: Arial, Helvetica, sans-serif;
