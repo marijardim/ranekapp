@@ -15,7 +15,8 @@ export default createStore({
       number: '',
       city: '',
       state: ''
-    }
+    },
+    user_products: null
   },
   getters: {
   },
@@ -25,9 +26,21 @@ export default createStore({
     },
     UPDATE_USER (state, payload) {
       state.user = Object.assign(state.user, payload)
+    },
+    UPDATE_USER_PRODUCTS (state, payload) {
+      state.user_products = payload
+    },
+    ADD_USER_PRODUCTS (state, payload) {
+      state.user_products.unshift(payload)
     }
   },
   actions: {
+    getUserProducts (context) {
+      api.get(`/product?user_id=${context.state.user.id}`)
+        .then(r => {
+          context.commit('UPDATE_USER_PRODUCTS', r.data)
+        })
+    },
     getUser (context, payload) {
       return api.get(`/user/${payload}`)
         .then(response => {

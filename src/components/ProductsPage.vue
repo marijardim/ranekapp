@@ -43,9 +43,9 @@ export default {
       for (let i = 1; i <= totalPages; i++) {
         pagesArray.push(i)
       }
+      
       pagesArray.splice(0, current-offset)
       pagesArray.splice(totalRange, totalPages)
-      console.log(pagesArray)
       return pagesArray
     }
   }

@@ -1,11 +1,13 @@
 <template>
   <form>
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name='nome' v-model='name'>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name='email' v-model='email'>
-    <label for="senha">Senha:</label>
-    <input type="password" id="senha" name='senha' v-model='password'>
+    <div class="user" v-if='showLoginData'>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name='nome' v-model='name'>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name='email' v-model='email'>
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name='senha' v-model='password'>
+    </div>
     <label for="postal">Cep:</label>
     <input type="text" id="postal" name='postal' v-model='postal' @keyup='setCep'>
     <label for="address">Rua:</label>
@@ -42,7 +44,10 @@ export default {
       ],
       base: 'user',
       mutation: 'UPDATE_USER'
-    })
+    }),
+    showLoginData () {
+      return (!this.$store.state.login || this.$route.name === 'user-edit')
+    }
   },
   methods: {
     setCep () {
@@ -60,10 +65,13 @@ export default {
 </script>
 
 <style scoped>
-form {
+form, .user {
   display: grid;
   grid-template-columns: 80px 1fr;
   align-items: center;
+}
+.user {
+  grid-column: 1 / 3;
 }
 .button {
   grid-column: 2;
