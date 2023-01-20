@@ -1,32 +1,38 @@
 <template>
   <section>
-  <div v-if='product' class="product">
-    <ul class="pics" v-if='product.pics'>
-      <li v-for="pic, index in product.pics" :key='index'>
-      <img :src="pic.src" alt="pic.title"></li>
-    </ul>
-    <div class="info">
-      <h1>{{ product.name }}</h1>
-      <p class="price">{{ price }}</p>
-      <p class="description">{{ product.description}}</p>
-      <button class="btn" v-if="product.sold === false">Comprar</button>
-      <button class="btn" v-else disabled>Comprar</button>
+    <div v-if='product' class="product">
+      <ul class="pics" v-if='product.pics'>
+        <li v-for="pic, index in product.pics" :key='index'>
+        <img :src="pic.src" alt="pic.title"></li>
+      </ul>
+      <div class="info">
+        <h1>{{ product.name }}</h1>
+        <p class="price">{{ price }}</p>
+        <p class="description">{{ product.description}}</p>
+        <transition name='fade' v-if="product.sold === 'false'">
+          <button class="btn" v-if='!finish' @click='finish = true'>Comprar</button>
+          <FinishShopping v-else :product='product' />
+        </transition>
+        <button class="btn" v-else disabled>Produto vendido</button>
+      </div>
     </div>
-  </div>
-  <LoadingPage v-else/>
+    <LoadingPage v-else/>
   </section>
 </template>
 
 <script>
 import { api } from '@/services/index'
+import FinishShopping from '@/components/FinishShopping.vue'
 
 export default {
   name: 'ProductView',
   props: ['id'],
+  components: { FinishShopping },
   data () {
     return {
       product: null,
-      price: []
+      price: [],
+      finish: false
     }
   },
   methods: {
