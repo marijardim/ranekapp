@@ -4,10 +4,10 @@
     <AddProduct />
     <h2>Seus produtos</h2>
     <transition-group name="fade" tag="ul">
-      <li v-for='(produto, index) in user_products' :key='index'>
-        <ProductItem :produto='produto'>
-          <p>{{ produto.description }}</p>
-          <button class="delete" @click='deleteProduct(produto.id)'>Deletar</button>
+      <li v-for='(product, index) in user_products' :key='index'>
+        <ProductItem :product='product'>
+          <p>{{ product.description }}</p>
+          <button class="delete" @click='deleteProduct(product.id)'>Deletar</button>
         </ProductItem>
       </li>
     </transition-group>

@@ -2,7 +2,7 @@
   <section class='products-container'>
     <div v-if='products && products.length' class='products'>
       <div v-for='(product, index) in products' :key='index' class='product'>
-        <router-link :to='{name:"produto", params: { id: product.id }}'>
+        <router-link :to='{name:"product", params: { id: product.id }}'>
           <img v-if='product.pics' :src='product.pics[0].src' :alt='product.pics[0].title'>
           <p class='price'>R${{ product.price }}</p>
           <h2 class='title'>{{ product.name }}</h2>
@@ -26,7 +26,7 @@ import { api } from '@/services/index.js'
 import { serialize } from '@/helpers/index.js'
 
 export default {
-  name: 'ProdutosLista',
+  name: 'productsLista',
   components: {
     ProductsPage
   },

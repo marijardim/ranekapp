@@ -6,10 +6,10 @@
           <router-link :to="{name: 'user'}">Produtos</router-link>
         </li>
         <li>
-          <router-link :to="{name: 'sell'}">Compras</router-link>
+          <router-link :to="{name: 'buy'}">Compras</router-link>
         </li>
         <li>
-          <router-link :to="{name: 'buy'}">Vendas</router-link>
+          <router-link :to="{name: 'sell'}">Vendas</router-link>
         </li>
         <li>
           <router-link :to="{name: 'user-edit'}">Editar Usuário</router-link>
