@@ -2,7 +2,7 @@
   <section>
     <h2>Endereço de envio</h2>
     <UserForm>
-      <button @click='finishShopping'>Finalizar Compra</button>
+      <button class="btn" @click.prevent='finishShopping'>Finalizar Compra</button>
     </UserForm>
   </section>
 </template>
@@ -36,23 +36,27 @@ export default {
     }
   },
   methods: {
-    createTransation () {
-      return api.post('/transation', this.buying).then(() => {
+    async createTransaction () {
+      try {
+        const response = await api.post('/transaction', this.buying)
         this.$router.push({ name: 'buy' })
-      })
+        return response
+      } catch (error) {
+        console.log(error)
+      }
     },
     async createUser () {
       try {
         await this.$store.dispatch('createUser', this.$store.state.user)
         await this.$store.dispatch('getUser', this.$store.state.user.email)
-        await this.createTransation()
+        await this.createTransaction()
       } catch (erro) {
         console.log(erro)
       }
     },
     finishShopping () {
       if (this.$store.state.login) {
-        this.createTransation()
+        this.createTransaction()
       } else {
         this.createUser()
       }

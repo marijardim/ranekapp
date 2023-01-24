@@ -1,13 +1,13 @@
 <template>
   <form class='add-product'>
     <label for="name">Nome</label>
-    <input type="text" id="name" name='name' v-model='produto.name'>
+    <input type="text" id="name" name='name' v-model='product.name'>
     <label for="price">Preço (R$)</label>
-    <input type="number" id="price" name='price' v-model='produto.price'>
+    <input type="number" id="price" name='price' v-model='product.price'>
     <label for="fotos">Fotos</label>
     <input type="file" id="fotos" name='fotos' ref='fotos'>
     <label for="description">Descrição</label>
-    <textarea id="description" name='description' v-model='produto.description'></textarea>
+    <textarea id="description" name='description' v-model='product.description'></textarea>
     <input class="btn" type="button" value="Adicionar Produto" @click.prevent='addProduct'>
   </form>
 </template>
@@ -19,7 +19,7 @@ export default {
   name: 'AddProduct',
   data () {
     return {
-      produto: {
+      product: {
         name: '',
         price: '',
         description: '',
@@ -30,12 +30,12 @@ export default {
   },
   methods: {
     formatProduct () {
-      this.produto.user_id = this.$store.state.user.id
+      this.product.user_id = this.$store.state.user.id
     },
     addProduct () {
       this.formatProduct()
-      this.produto.user_id = this.$store.state.user.id
-      api.post('/product', this.produto)
+      this.product.user_id = this.$store.state.user.id
+      api.post('/product', this.product)
         .then(() => {
           this.$store.dispatch('getUserProducts')
         })
