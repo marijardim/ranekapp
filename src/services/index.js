@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'http://ranekapilocal.local/wp-json/api'
 })
 
 export const api = {

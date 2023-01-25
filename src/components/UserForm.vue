@@ -12,8 +12,8 @@
     <input type="text" id="postal" name='postal' v-model='postal' @keyup='setCep'>
     <label for="address">Rua:</label>
     <input type="text" id="address" name='address' v-model='address'>
-    <label for="number">Numero:</label>
-    <input type="text" id="number" name='number' v-model='number'>
+    <label for="numero">Numero:</label>
+    <input type="text" id="numero" name='numero' v-model='numero'>
     <label for="city">Cidade:</label>
     <input type="text" id="city" name='city' v-model='city'>
     <label for="state">Estado:</label>
@@ -38,7 +38,7 @@ export default {
         'password',
         'postal',
         'address',
-        'number',
+        'numero',
         'city',
         'state'
       ],

@@ -12,7 +12,7 @@ export default createStore({
       password: '',
       postal: '',
       address: '',
-      number: '',
+      numero: '',
       city: '',
       state: ''
     },
@@ -36,7 +36,7 @@ export default createStore({
   },
   actions: {
     getUserProducts (context) {
-      api.get(`/product?user_id=${context.state.user.id}`)
+      api.get(`/produto?usuario_id=${context.state.user.id}`)
         .then(r => {
           context.commit('UPDATE_USER_PRODUCTS', r.data)
         })
@@ -62,7 +62,7 @@ export default createStore({
         password: '',
         postal: '',
         address: '',
-        number: '',
+        numero: '',
         city: '',
         state: ''
       })

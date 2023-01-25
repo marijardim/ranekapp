@@ -1,12 +1,12 @@
 <template>
   <div class="product" v-if="product">
-    <router-link class="product-img" :to='{name: "product", params: { id: product.id}}'>
-      <img v-if='product.pics' :src='product.pics[0].src' :alt='product.pics[0].src.title'>
+    <router-link class="product-img" :to='{name: "product", params: { id: produto.id}}'>
+      <img v-if='produto.fotos' :src='produto.fotos[0].src' :alt='produto.fotos[0].src.title'>
       <p>Ver produto</p>
     </router-link>
     <div class="info">
-      <p class="price">{{ product.price }}</p>
-      <h2 class="titulo">{{ product.name }}</h2>
+      <p class="preco">{{ produto.preco }}</p>
+      <h2 class="titulo">{{ produto.name }}</h2>
       <slot></slot>
     </div>
   </div>

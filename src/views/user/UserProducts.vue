@@ -1,13 +1,13 @@
 <template>
   <section>
     <h2>Adicionar Produto</h2>
-    <AddProduct />
+    <adicionarProduto />
     <h2>Seus produtos</h2>
     <transition-group name="fade" tag="ul">
       <li v-for='(product, index) in user_products' :key='index'>
         <ProductItem :product='product'>
-          <p>{{ product.description }}</p>
-          <button class="delete" @click='deleteProduct(product.id)'>Deletar</button>
+          <p>{{ produto.descricao }}</p>
+          <button class="delete" @click='deleteProduct(produto.id)'>Deletar</button>
         </ProductItem>
       </li>
     </transition-group>
@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import AddProduct from '@/components/AddProduct.vue'
+import adicionarProduto from '@/components/adicionarProduto.vue'
 import { mapState, mapActions } from 'vuex'
 import ProductItem from '@/components/ProductItem.vue'
 import { api } from '@/services/index'
 
 export default {
   name: 'UserProducts',
-  components: { AddProduct, ProductItem },
+  components: { adicionarProduto, ProductItem },
   computed: {
     ...mapState(['login', 'user', 'user_products'])
   },
@@ -31,7 +31,7 @@ export default {
     deleteProduct (id) {
       const confirm = window.confirm('Deseja mesmo remover este produto?')
       if (confirm) {
-        api.delete(`/product/${id}`).then(() => {
+        api.delete(`/produto/${id}`).then(() => {
           this.getUserProducts()
         }).catch(error => {
           console.log(error.response)

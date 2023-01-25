@@ -1,15 +1,15 @@
 <template>
   <section>
     <div v-if='product' class="product">
-      <ul class="pics" v-if='product.pics'>
-        <li v-for="pic, index in product.pics" :key='index'>
+      <ul class="fotos" v-if='produto.fotos'>
+        <li v-for="pic, index in produto.fotos" :key='index'>
         <img :src="pic.src" alt="pic.title"></li>
       </ul>
       <div class="info">
-        <h1>{{ product.name }}</h1>
-        <p class="price">{{ price }}</p>
-        <p class="description">{{ product.description}}</p>
-        <transition name='fade' v-if="product.sold === 'false'">
+        <h1>{{ produto.name }}</h1>
+        <p class="preco">{{ preco }}</p>
+        <p class="descricao">{{ produto.descricao}}</p>
+        <transition name='fade' v-if="produto.sold === 'false'">
           <button class="btn" v-if='!finish' @click='finish = true'>Comprar</button>
           <FinishShopping v-else :product='product' />
         </transition>
@@ -31,16 +31,16 @@ export default {
   data () {
     return {
       product: null,
-      price: [],
+      preco: [],
       finish: false
     }
   },
   methods: {
     getProduct () {
-      api.get(`/product/${this.id}`)
+      api.get(`/produto/${this.id}`)
         .then(r => {
           this.product = r.data
-          this.price = r.data.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+          this.preco = r.data.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
         })
     }
   },
@@ -59,13 +59,13 @@ export default {
   padding: 60px 20px;
   margin: 0 auto;
 }
-.price {
+.preco {
   color: #e80;
   font-weight: bold;
   font-size: 1.5rem;
   margin-bottom: 40px;
 }
-.description {
+.descricao {
   font-size: 1.2rem;
 }
 .btn {

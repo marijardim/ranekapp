@@ -2,11 +2,11 @@
   <section class='products-container'>
     <div v-if='products && products.length' class='products'>
       <div v-for='(product, index) in products' :key='index' class='product'>
-        <router-link :to='{name:"product", params: { id: product.id }}'>
-          <img v-if='product.pics' :src='product.pics[0].src' :alt='product.pics[0].title'>
-          <p class='price'>R${{ product.price }}</p>
-          <h2 class='title'>{{ product.name }}</h2>
-          <p class='description'>{{ product.description }}</p>
+        <router-link :to='{name:"product", params: { id: produto.id }}'>
+          <img v-if='produto.fotos' :src='produto.fotos[0].src' :alt='produto.fotos[0].title'>
+          <p class='preco'>R${{ produto.preco }}</p>
+          <h2 class='title'>{{ produto.name }}</h2>
+          <p class='descricao'>{{ produto.descricao }}</p>
         </router-link>
       </div>
       <ProductsPage :productsTotal='productsTotal' :productsPerPage='productsPerPage'/>
@@ -40,7 +40,7 @@ export default {
   computed: {
     url () {
       const query = serialize(this.$route.query)
-      return `/product?_limit=${this.productsPerPage}${query}`
+      return `/produto?_limit=${this.productsPerPage}${query}`
     },
     filterValue (value) {
       return `R$${value},00`
@@ -97,7 +97,7 @@ export default {
 .title{
   margin-bottom: 10px;
 }
-.price {
+.preco {
   font-weight: bold;
   color: #e80;
 }

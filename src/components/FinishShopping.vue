@@ -23,12 +23,12 @@ export default {
     buying () {
       return {
         buyer_id: this.user.email,
-        seller_id: this.product.user_id,
+        seller_id: this.produto.usuario_id,
         product: this.product,
         fullAddress: {
           postal: this.user.postal,
           address: this.user.address,
-          number: this.user.number,
+          numero: this.user.numero,
           city: this.user.city,
           state: this.user.state
         }
